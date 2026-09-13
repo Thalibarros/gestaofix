@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - GestãoFix</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            background-color: #0f172a; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .sistema-titulo {
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            width: 350px; 
+            text-align: center; 
+            border-top: 5px solid #1e3a8a; 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        h2 { color: #1e3a8a; margin-top: 0; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #1e3a8a; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #172554; }
+        .links { margin-top: 15px; font-size: 13px; }
+        .links a { color: #1e3a8a; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- Nome do sistema bem grande em cima -->
+    <div class="sistema-titulo">GestãoFix</div>
+
+    <div class="card">
+        <h2>Login</h2>
+        <form action="dashboard.html">
+            <input type="text" placeholder="Usuário" required>
+            <input type="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+            <div class="links">
+                Não tem conta? <a href="cadastro.html">Cadastre-se</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

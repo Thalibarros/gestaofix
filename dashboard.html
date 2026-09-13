@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Ocorrências - GestãoFix</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f8fafc; margin: 0; padding: 20px; }
+        header { background: #1e3a8a; color: white; padding: 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        nav a { color: white; margin-left: 15px; text-decoration: none; font-weight: bold; background: rgba(255,255,255,0.15); padding: 8px 12px; border-radius: 5px; transition: 0.2s; }
+        nav a:hover { background: rgba(255,255,255,0.25); }
+        .content { margin-top: 20px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+        th { background-color: #f1f5f9; color: #1e3a8a; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Painel - GestãoFix</h1>
+        <nav>
+            <a href="criar.html">+ Nova Ocorrência</a>
+            <a href="index.html">Sair</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h2>Ocorrências Registradas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data e Hora</th>
+                    <th>Local</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaOcorrencias">
+                <!-- Os dados entram aqui automaticamente via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Carrega as ocorrências salvas no navegador
+        let ocorrencias = JSON.parse(localStorage.getItem('listaOcorrencias')) || [];
+        
+        // Se não houver nenhuma cadastrada ainda, coloca um exemplo padrão
+        if (ocorrencias.length === 0) {
+            ocorrencias = [
+                { data: '10/08/2026 14:30', local: 'Bloco A, Sala 12', status: 'Pendente' }
+            ];
+        }
+
+        let tbody = document.getElementById('tabelaOcorrencias');
+        
+        // Insere cada ocorrência na tabela
+        ocorrencias.forEach(item => {
+            let tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.data}</td>
+                <td>${item.local}</td>
+                <td>${item.status}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    </script>
+</body>
+</html>

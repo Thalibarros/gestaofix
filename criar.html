@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Ocorrência - GestãoFix</title>
+    <style>
+        body { font-family: sans-serif; background-color: #0f172a; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .sistema-titulo { color: #ffffff; font-size: 28px; font-weight: bold; margin-bottom: 20px; }
+        .card { background: white; padding: 30px; border-radius: 10px; width: 400px; border-top: 5px solid #1e3a8a; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        h2 { color: #1e3a8a; margin-top: 0; text-align: center; }
+        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; color: #334155; }
+        input, select { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 11px; background: #1e3a8a; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        button:hover { background: #172554; }
+        .voltar { text-align: center; margin-top: 15px; }
+        .voltar a { color: #1e3a8a; text-decoration: none; font-size: 13px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="sistema-titulo">GestãoFix</div>
+    <div class="card">
+        <h2>Nova Ocorrência</h2>
+        <form id="formOcorrencia">
+            <label>Data e Hora:</label>
+            <input type="datetime-local" id="dataHora" required>
+            
+            <label>Local:</label>
+            <input type="text" id="local" placeholder="Ex: Bloco A, Sala 12" required>
+            
+            <label>Categoria:</label>
+            <select id="categoria" required>
+                <option value="">Selecione...</option>
+                <option value="Manutenção">Manutenção</option>
+                <option value="Segurança">Segurança</option>
+                <option value="Limpeza">Limpeza</option>
+            </select>
+
+            <button type="submit">Salvar Ocorrência</button>
+        </form>
+        <div class="voltar">
+            <a href="dashboard.html">Voltar ao Painel</a>
+        </div>
+    </div>
+
+   <script>
+        document.getElementById('formOcorrencia').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let dataHora = document.getElementById('dataHora').value;
+            let local = document.getElementById('local').value;
+
+            fetch('salvar_ocorrencia.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data_hora: dataHora, local: local })
+            })
+            .then(res => res.json())
+            .then(data => {
+                window.location.href = 'dashboard.html';
+            })
+            .catch(err => {
+                // Fallback para protótipo se o PHP não estiver rodando no server Apache
+                window.location.href = 'dashboard.html';
+            });
+        });
+    </script>
+</body>
+</html>
